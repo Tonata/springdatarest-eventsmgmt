@@ -1,13 +1,12 @@
 package com.martian.springdatarest.entities;
 
-import javax.persistence.Column;
-import javax.persistence.FetchType;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
+import java.util.Objects;
 
 /**
  * Created by martian on 2018/03/06.
  */
+@Entity
 public class Participant extends AbstractEntity {
 
     @Column(nullable = false)
@@ -49,5 +48,15 @@ public class Participant extends AbstractEntity {
 
     public void setEvent(Event event) {
         this.event = event;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        return Objects.equals(id, ((Participant) obj).id);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
     }
 }

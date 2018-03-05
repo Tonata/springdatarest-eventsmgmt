@@ -1,8 +1,12 @@
 package com.martian.springdatarest.entities;
 
+import javax.persistence.Entity;
+import java.util.Objects;
+
 /**
  * Created by martian on 2018/03/06.
  */
+@Entity
 public class Venue extends AbstractEntity {
 
     private String name;
@@ -67,5 +71,15 @@ public class Venue extends AbstractEntity {
 
     public void setPostalCode(String postalCode) {
         this.postalCode = postalCode;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        return Objects.equals(id, ((Venue) obj).id);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
     }
 }

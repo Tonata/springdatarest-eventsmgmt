@@ -3,11 +3,13 @@ package com.martian.springdatarest.entities;
 import javax.persistence.*;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
+import java.util.Objects;
 import java.util.Set;
 
 /**
  * Created by martian on 2018/03/06.
  */
+@Entity
 public class Event extends AbstractEntity {
 
     private String name;
@@ -16,7 +18,7 @@ public class Event extends AbstractEntity {
     private ZonedDateTime endTime;
     private ZoneId zoneId;
     private Boolean started;
-    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(nullable = false)
     private Organizer organizer;
     @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "event")
@@ -99,5 +101,15 @@ public class Event extends AbstractEntity {
 
     public void setVenue(Venue venue) {
         this.venue = venue;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        return Objects.equals(id, ((Event) obj).id);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
     }
 }

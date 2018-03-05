@@ -1,11 +1,14 @@
 package com.martian.springdatarest.entities;
 
+import javax.persistence.Entity;
 import javax.persistence.OneToMany;
+import java.util.Objects;
 import java.util.Set;
 
 /**
  * Created by martian on 2018/03/06.
  */
+@Entity
 public class Organizer extends AbstractEntity {
 
     private String name;
@@ -26,5 +29,15 @@ public class Organizer extends AbstractEntity {
 
     public void setEvents(Set<Event> events) {
         this.events = events;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        return Objects.equals(id, ((Organizer) obj).id);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
     }
 }
