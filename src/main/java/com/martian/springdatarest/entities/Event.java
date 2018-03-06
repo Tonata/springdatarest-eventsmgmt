@@ -1,5 +1,7 @@
 package com.martian.springdatarest.entities;
 
+import org.springframework.data.rest.core.annotation.RestResource;
+
 import javax.persistence.*;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
@@ -24,6 +26,7 @@ public class Event extends AbstractEntity {
     @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "event")
     private Set<Participant> participants;
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @RestResource(exported = false) // create venue as part of event
     private Venue venue;
 
 
@@ -101,6 +104,10 @@ public class Event extends AbstractEntity {
 
     public void setVenue(Venue venue) {
         this.venue = venue;
+    }
+
+    public Long getResourceId(){
+        return this.id;
     }
 
     @Override

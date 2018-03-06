@@ -82,4 +82,8 @@ public class Venue extends AbstractEntity {
     public int hashCode() {
         return Objects.hash(id);
     }
+
+    public Long getResourceId(){
+        return this.id;
+    }
 }
