@@ -1,5 +1,7 @@
 package com.martian.springdatarest.entities;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import org.springframework.data.rest.core.annotation.RestResource;
 
 import javax.persistence.*;
@@ -11,10 +13,12 @@ import java.util.Set;
 /**
  * Created by martian on 2018/03/06.
  */
+@JsonPropertyOrder({"resourceId"}) // tell application show resource id as first field in response
 @Entity
 public class Event extends AbstractEntity {
 
     private String name;
+    @JsonProperty("desc")
     private String description;
     private ZonedDateTime startTime;
     private ZonedDateTime endTime;

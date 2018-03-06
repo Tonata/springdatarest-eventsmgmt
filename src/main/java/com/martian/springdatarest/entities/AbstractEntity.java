@@ -1,5 +1,6 @@
 package com.martian.springdatarest.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
@@ -15,6 +16,7 @@ public class AbstractEntity {
     @Column(nullable=false, updatable=false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     protected Long id;
+    @JsonIgnore // remove from response
     @CreationTimestamp
     @Column(updatable = false)
     protected Instant created;
